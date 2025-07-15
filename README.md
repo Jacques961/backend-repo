@@ -1,7 +1,7 @@
-# 🛍️ AI-Powered E-Commerce App
+# 🛍️ E-Commerce App
 
 ## Overview
-This project is an AI-powered e-commerce platform with the following stack:
+This project is an e-commerce platform with the following stack:
 
 - **Frontend**: React chatbot (Vite)
 - **Backend**: FastAPI
