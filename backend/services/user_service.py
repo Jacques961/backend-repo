@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Annotated
 from fastapi import Depends, HTTPException
-from backend.models import user_model, token_model
+from backend.models import user_model
 from backend.data.database import User_db
 from sqlalchemy.orm import Session 
 import random
