@@ -1,14 +1,20 @@
 # Chatbot Logic Documentation
 
-- The chatbot receives user messages via the `/chat` POST endpoint.
-- Incoming messages are processed by:
-  - Converting to lowercase.
-  - Checking for certain keywords and responding accordingly:
-    - "shipping" → Returns shipping info message.
-    - "refund" or "return" → Returns refund policy info.
-    - "category" or "categories" → Lists available product categories.
-  - If no keywords match, a fallback message is returned, e.g.,  
+- The chatbot functionality is provided via a FastAPI backend endpoint (`/chat`), which handles incoming user messages.
+
+- There are two main chatbot interfaces:
+  - **React Chatbot**: The user-facing chatbot integrated into the React frontend, designed for customers to ask questions and get quick responses.
+  - **Gradio Chatbot**: An admin/support interface built with Gradio, used internally for testing, monitoring, and support purposes.
+
+- Both interfaces use the same underlying chatbot logic:
+  - Incoming messages are converted to lowercase.
+  - The chatbot checks for specific keywords to determine responses:
+    - "shipping" → Provides shipping information.
+    - "refund" or "return" → Provides refund policy.
+    - "category" or "categories" → Lists product categories.
+  - If no keywords match, it responds with a fallback message such as:  
     "Sorry, I didn't understand your question. Could you please rephrase?"
-- The chatbot currently uses a rule-based approach.
-- Future plans include integrating OpenAI or other language models for enhanced responses.
-- The chatbot is implemented as a FastAPI route, making it accessible to both React frontend and Gradio admin interfaces.
+
+- The chatbot currently follows a rule-based approach with predefined responses.
+
+- Future plans include integrating advanced AI or OpenAI models to enhance the chatbot’s conversational abilities.
