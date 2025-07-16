@@ -6,7 +6,7 @@ from backend.data.database import get_db
 
 router = APIRouter()
 
-@router.get("/users", response_model = list[user_model.Get_User])
+@router.get("/users", response_model = list[user_model.UserResponse])
 def get_users(db: Session = Depends(get_db)):
     users = user_service.get_users(db)
 

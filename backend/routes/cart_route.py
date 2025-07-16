@@ -8,7 +8,7 @@ from backend.services.auth_service import get_current_user
 router = APIRouter()
 
 @router.get("/cart", response_model=cart_model.Cart_Response)
-def get_cart(user_id: int, db: Session = Depends(get_db),
+def get_cart(db: Session = Depends(get_db),
              current_user: dict = Depends(get_current_user)):
     
     user_id = current_user["id"]
@@ -20,7 +20,7 @@ def get_cart(user_id: int, db: Session = Depends(get_db),
     return cart
 
 @router.post("/cart", response_model=cart_model.Get_Cart_Item, status_code=200)
-def create_item(item: cart_model.Create_Cart_Item, user_id:int, db: Session = Depends(get_db),
+def create_item(item: cart_model.Create_Cart_Item, db: Session = Depends(get_db),
                 current_user: dict = Depends(get_current_user)):
     
     user_id = current_user["id"]
@@ -32,7 +32,7 @@ def create_item(item: cart_model.Create_Cart_Item, user_id:int, db: Session = De
     return created
 
 @router.delete("/cart/{product_id}")
-def delete_item(product_id: str, user_id: int, db: Session = Depends(get_db),
+def delete_item(product_id: str, db: Session = Depends(get_db),
                 current_user: dict = Depends(get_current_user)):
     
     user_id = current_user["id"]
@@ -44,15 +44,15 @@ def delete_item(product_id: str, user_id: int, db: Session = Depends(get_db),
     return deleted
 
 @router.post("/checkout")
-def place_order(user_id: int, db: Session = Depends(get_db),
+def place_order(db: Session = Depends(get_db),
                 current_user: dict = Depends(get_current_user)):
     
     user_id = current_user["id"]    
     return cart_service.checkout_cart(db, user_id)
 
 
-@router.get("/orders/{user_id}")
-def get_order_history(user_id: int, db: Session = Depends(get_db),
+@router.get("/orders")
+def get_order_history(db: Session = Depends(get_db),
                       current_user: dict = Depends(get_current_user)):
     
     user_id = current_user["id"]

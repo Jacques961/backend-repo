@@ -12,3 +12,11 @@ class Get_User(Base_User):
 
     class Config:
         from_attributes = True
+
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    is_admin: bool  
+
+    class Config:
+        orm_mode = True
